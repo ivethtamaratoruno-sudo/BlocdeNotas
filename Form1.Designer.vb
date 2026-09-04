@@ -30,19 +30,19 @@ Partial Class frmBlocNotas
         mnuAbrir = New ToolStripMenuItem()
         mnuGuardarDocumento = New ToolStripMenuItem()
         mnuGuardarComo = New ToolStripMenuItem()
-        SalirToolStripMenuItem = New ToolStripMenuItem()
-        EdiciónToolStripMenuItem = New ToolStripMenuItem()
+        mnuSalir = New ToolStripMenuItem()
+        mnuEdicion = New ToolStripMenuItem()
         mnuDeshacer = New ToolStripMenuItem()
         mnuRehacer = New ToolStripMenuItem()
         mnuCortar = New ToolStripMenuItem()
         mnuCopiar = New ToolStripMenuItem()
         mnuPegar = New ToolStripMenuItem()
         mnuSeleccionarTodo = New ToolStripMenuItem()
-        FormatoToolStripMenuItem = New ToolStripMenuItem()
+        mnuFormato = New ToolStripMenuItem()
         mnuFuente = New ToolStripMenuItem()
         mnuColorTexto = New ToolStripMenuItem()
         mnuAjusteLinea = New ToolStripMenuItem()
-        VerToolStripMenuItem = New ToolStripMenuItem()
+        mnuVer = New ToolStripMenuItem()
         mnuZoomMas = New ToolStripMenuItem()
         mnuZoomMenos = New ToolStripMenuItem()
         mnuZoomRestablecer = New ToolStripMenuItem()
@@ -50,7 +50,7 @@ Partial Class frmBlocNotas
         mnuBuscar = New ToolStripMenuItem()
         mnuContarPalabras = New ToolStripMenuItem()
         mnuContarCaracteres = New ToolStripMenuItem()
-        AyudaToolStripMenuItem = New ToolStripMenuItem()
+        mnuAyuda = New ToolStripMenuItem()
         mnuAcercaDe = New ToolStripMenuItem()
         AngelicaMorenoToolStripMenuItem = New ToolStripMenuItem()
         IvethToruñoToolStripMenuItem = New ToolStripMenuItem()
@@ -105,7 +105,7 @@ Partial Class frmBlocNotas
         ' 
         ' mnuPrincipal
         ' 
-        mnuPrincipal.Items.AddRange(New ToolStripItem() {mnuArchivo, EdiciónToolStripMenuItem, FormatoToolStripMenuItem, VerToolStripMenuItem, mnuHerramientas, AyudaToolStripMenuItem})
+        mnuPrincipal.Items.AddRange(New ToolStripItem() {mnuArchivo, mnuEdicion, mnuFormato, mnuVer, mnuHerramientas, mnuAyuda})
         mnuPrincipal.Location = New Point(0, 0)
         mnuPrincipal.Name = "mnuPrincipal"
         mnuPrincipal.Size = New Size(800, 24)
@@ -114,7 +114,7 @@ Partial Class frmBlocNotas
         ' 
         ' mnuArchivo
         ' 
-        mnuArchivo.DropDownItems.AddRange(New ToolStripItem() {mnuNuevo, mnuAbrir, mnuGuardarDocumento, mnuGuardarComo, SalirToolStripMenuItem})
+        mnuArchivo.DropDownItems.AddRange(New ToolStripItem() {mnuNuevo, mnuAbrir, mnuGuardarDocumento, mnuGuardarComo, mnuSalir})
         mnuArchivo.Name = "mnuArchivo"
         mnuArchivo.ShortcutKeys = Keys.Alt Or Keys.F4
         mnuArchivo.Size = New Size(63, 20)
@@ -147,19 +147,19 @@ Partial Class frmBlocNotas
         mnuGuardarComo.Size = New Size(180, 22)
         mnuGuardarComo.Text = "Guardar como"
         ' 
-        ' SalirToolStripMenuItem
+        ' mnuSalir
         ' 
-        SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        SalirToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
-        SalirToolStripMenuItem.Size = New Size(180, 22)
-        SalirToolStripMenuItem.Text = "Salir"
+        mnuSalir.Name = "mnuSalir"
+        mnuSalir.ShortcutKeys = Keys.Alt Or Keys.F4
+        mnuSalir.Size = New Size(180, 22)
+        mnuSalir.Text = "Salir"
         ' 
-        ' EdiciónToolStripMenuItem
+        ' mnuEdicion
         ' 
-        EdiciónToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuDeshacer, mnuRehacer, mnuCortar, mnuCopiar, mnuPegar, mnuSeleccionarTodo})
-        EdiciónToolStripMenuItem.Name = "EdiciónToolStripMenuItem"
-        EdiciónToolStripMenuItem.Size = New Size(58, 20)
-        EdiciónToolStripMenuItem.Text = "Edición"
+        mnuEdicion.DropDownItems.AddRange(New ToolStripItem() {mnuDeshacer, mnuRehacer, mnuCortar, mnuCopiar, mnuPegar, mnuSeleccionarTodo})
+        mnuEdicion.Name = "mnuEdicion"
+        mnuEdicion.Size = New Size(58, 20)
+        mnuEdicion.Text = "Edición"
         ' 
         ' mnuDeshacer
         ' 
@@ -203,55 +203,55 @@ Partial Class frmBlocNotas
         mnuSeleccionarTodo.Size = New Size(204, 22)
         mnuSeleccionarTodo.Text = "Seleccionar todo"
         ' 
-        ' FormatoToolStripMenuItem
+        ' mnuFormato
         ' 
-        FormatoToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuFuente, mnuColorTexto, mnuAjusteLinea})
-        FormatoToolStripMenuItem.Name = "FormatoToolStripMenuItem"
-        FormatoToolStripMenuItem.Size = New Size(64, 20)
-        FormatoToolStripMenuItem.Text = "Formato"
+        mnuFormato.DropDownItems.AddRange(New ToolStripItem() {mnuFuente, mnuColorTexto, mnuAjusteLinea})
+        mnuFormato.Name = "mnuFormato"
+        mnuFormato.Size = New Size(64, 20)
+        mnuFormato.Text = "Formato"
         ' 
         ' mnuFuente
         ' 
         mnuFuente.Name = "mnuFuente"
-        mnuFuente.Size = New Size(151, 22)
+        mnuFuente.Size = New Size(180, 22)
         mnuFuente.Text = "Fuente..."
         ' 
         ' mnuColorTexto
         ' 
         mnuColorTexto.Name = "mnuColorTexto"
-        mnuColorTexto.Size = New Size(151, 22)
+        mnuColorTexto.Size = New Size(180, 22)
         mnuColorTexto.Text = "Color de texto"
         ' 
         ' mnuAjusteLinea
         ' 
         mnuAjusteLinea.CheckOnClick = True
         mnuAjusteLinea.Name = "mnuAjusteLinea"
-        mnuAjusteLinea.Size = New Size(151, 22)
+        mnuAjusteLinea.Size = New Size(180, 22)
         mnuAjusteLinea.Text = "Ajuste de línea"
         ' 
-        ' VerToolStripMenuItem
+        ' mnuVer
         ' 
-        VerToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuZoomMas, mnuZoomMenos, mnuZoomRestablecer})
-        VerToolStripMenuItem.Name = "VerToolStripMenuItem"
-        VerToolStripMenuItem.Size = New Size(35, 20)
-        VerToolStripMenuItem.Text = "Ver"
+        mnuVer.DropDownItems.AddRange(New ToolStripItem() {mnuZoomMas, mnuZoomMenos, mnuZoomRestablecer})
+        mnuVer.Name = "mnuVer"
+        mnuVer.Size = New Size(35, 20)
+        mnuVer.Text = "Ver"
         ' 
         ' mnuZoomMas
         ' 
         mnuZoomMas.Name = "mnuZoomMas"
-        mnuZoomMas.Size = New Size(167, 22)
+        mnuZoomMas.Size = New Size(180, 22)
         mnuZoomMas.Text = "Zoom +"
         ' 
         ' mnuZoomMenos
         ' 
         mnuZoomMenos.Name = "mnuZoomMenos"
-        mnuZoomMenos.Size = New Size(167, 22)
+        mnuZoomMenos.Size = New Size(180, 22)
         mnuZoomMenos.Text = "Zoom -"
         ' 
         ' mnuZoomRestablecer
         ' 
         mnuZoomRestablecer.Name = "mnuZoomRestablecer"
-        mnuZoomRestablecer.Size = New Size(167, 22)
+        mnuZoomRestablecer.Size = New Size(180, 22)
         mnuZoomRestablecer.Text = "Restablecer zoom"
         ' 
         ' mnuHerramientas
@@ -265,44 +265,44 @@ Partial Class frmBlocNotas
         ' 
         mnuBuscar.AutoToolTip = True
         mnuBuscar.Name = "mnuBuscar"
-        mnuBuscar.Size = New Size(166, 22)
+        mnuBuscar.Size = New Size(180, 22)
         mnuBuscar.Text = "Buscar"
         ' 
         ' mnuContarPalabras
         ' 
         mnuContarPalabras.Name = "mnuContarPalabras"
-        mnuContarPalabras.Size = New Size(166, 22)
+        mnuContarPalabras.Size = New Size(180, 22)
         mnuContarPalabras.Text = "Contar palabras "
         ' 
         ' mnuContarCaracteres
         ' 
         mnuContarCaracteres.Name = "mnuContarCaracteres"
-        mnuContarCaracteres.Size = New Size(166, 22)
+        mnuContarCaracteres.Size = New Size(180, 22)
         mnuContarCaracteres.Text = "Contar caracteres"
         ' 
-        ' AyudaToolStripMenuItem
+        ' mnuAyuda
         ' 
-        AyudaToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuAcercaDe, AngelicaMorenoToolStripMenuItem, IvethToruñoToolStripMenuItem})
-        AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
-        AyudaToolStripMenuItem.Size = New Size(53, 20)
-        AyudaToolStripMenuItem.Text = "Ayuda"
+        mnuAyuda.DropDownItems.AddRange(New ToolStripItem() {mnuAcercaDe, AngelicaMorenoToolStripMenuItem, IvethToruñoToolStripMenuItem})
+        mnuAyuda.Name = "mnuAyuda"
+        mnuAyuda.Size = New Size(53, 20)
+        mnuAyuda.Text = "Ayuda"
         ' 
         ' mnuAcercaDe
         ' 
         mnuAcercaDe.Name = "mnuAcercaDe"
-        mnuAcercaDe.Size = New Size(165, 22)
+        mnuAcercaDe.Size = New Size(180, 22)
         mnuAcercaDe.Text = "Acerca de"
         ' 
         ' AngelicaMorenoToolStripMenuItem
         ' 
         AngelicaMorenoToolStripMenuItem.Name = "AngelicaMorenoToolStripMenuItem"
-        AngelicaMorenoToolStripMenuItem.Size = New Size(165, 22)
+        AngelicaMorenoToolStripMenuItem.Size = New Size(180, 22)
         AngelicaMorenoToolStripMenuItem.Text = "Angelica Moreno"
         ' 
         ' IvethToruñoToolStripMenuItem
         ' 
         IvethToruñoToolStripMenuItem.Name = "IvethToruñoToolStripMenuItem"
-        IvethToruñoToolStripMenuItem.Size = New Size(165, 22)
+        IvethToruñoToolStripMenuItem.Size = New Size(180, 22)
         IvethToruñoToolStripMenuItem.Text = "Iveth Toruño"
         ' 
         ' tsPrincipal
@@ -635,10 +635,10 @@ Partial Class frmBlocNotas
 
     Friend WithEvents mnuPrincipal As MenuStrip
     Friend WithEvents mnuArchivo As ToolStripMenuItem
-    Friend WithEvents EdiciónToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents FormatoToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents VerToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AyudaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents mnuEdicion As ToolStripMenuItem
+    Friend WithEvents mnuFormato As ToolStripMenuItem
+    Friend WithEvents mnuVer As ToolStripMenuItem
+    Friend WithEvents mnuAyuda As ToolStripMenuItem
     Friend WithEvents tsPrincipal As ToolStrip
     Friend WithEvents rtbDocumento As RichTextBox
     Friend WithEvents cmsTexto As ContextMenuStrip
@@ -652,7 +652,7 @@ Partial Class frmBlocNotas
     Friend WithEvents mnuAbrir As ToolStripMenuItem
     Friend WithEvents mnuGuardarDocumento As ToolStripMenuItem
     Friend WithEvents mnuGuardarComo As ToolStripMenuItem
-    Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents mnuSalir As ToolStripMenuItem
     Friend WithEvents mnuDeshacer As ToolStripMenuItem
     Friend WithEvents mnuRehacer As ToolStripMenuItem
     Friend WithEvents mnuCortar As ToolStripMenuItem

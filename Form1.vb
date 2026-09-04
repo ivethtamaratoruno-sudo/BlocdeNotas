@@ -44,7 +44,7 @@ Public Class frmBlocNotas
     Private Sub mnuGuardarComo_Click(sender As Object, e As EventArgs) Handles mnuGuardarComo.Click
     End Sub
 
-    Private Sub mnuSalir_Click(
+    Private Sub mnuArchivo_Click(
     sender As Object,
     e As EventArgs
 ) Handles mnuArchivo.Click
@@ -152,8 +152,7 @@ Public Class frmBlocNotas
         AbrirDocumento()
     End Sub
 
-    Private Sub tsbGuardar_Click(sender As Object, e As EventArgs) Handles tsbGuardarDocumento.Click
-    End Sub
+    
 
     Private Sub tsbCortar_Click(sender As Object, e As EventArgs) Handles tsbCortar.Click
         rtbDocumento.Cut()
