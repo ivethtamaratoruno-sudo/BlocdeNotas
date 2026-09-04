@@ -569,6 +569,7 @@ Partial Class frmBlocNotas
         ' 
         ' RichTextBox1
         ' 
+        RichTextBox1.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         RichTextBox1.Location = New Point(0, 392)
         RichTextBox1.Name = "RichTextBox1"
         RichTextBox1.Size = New Size(800, 33)
@@ -577,6 +578,7 @@ Partial Class frmBlocNotas
         ' 
         ' txtBuscar
         ' 
+        txtBuscar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         txtBuscar.Location = New Point(108, 399)
         txtBuscar.Name = "txtBuscar"
         txtBuscar.Size = New Size(251, 23)
@@ -584,6 +586,7 @@ Partial Class frmBlocNotas
         ' 
         ' btnBuscar
         ' 
+        btnBuscar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnBuscar.Location = New Point(365, 399)
         btnBuscar.Name = "btnBuscar"
         btnBuscar.Size = New Size(81, 26)
@@ -593,6 +596,7 @@ Partial Class frmBlocNotas
         ' 
         ' Label1
         ' 
+        Label1.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         Label1.AutoSize = True
         Label1.Location = New Point(31, 405)
         Label1.Name = "Label1"
