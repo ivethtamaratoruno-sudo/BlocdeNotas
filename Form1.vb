@@ -47,7 +47,7 @@ Public Class frmBlocNotas
     Private Sub mnuSalir_Click(
     sender As Object,
     e As EventArgs
-) Handles mnuSalir.Click
+) Handles mnuArchivo.Click
 
         If documentoModificado Then
 

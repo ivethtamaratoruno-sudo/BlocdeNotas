@@ -25,7 +25,7 @@ Partial Class frmBlocNotas
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBlocNotas))
         mnuPrincipal = New MenuStrip()
-        mnuSalir = New ToolStripMenuItem()
+        mnuArchivo = New ToolStripMenuItem()
         mnuNuevo = New ToolStripMenuItem()
         mnuAbrir = New ToolStripMenuItem()
         mnuGuardarDocumento = New ToolStripMenuItem()
@@ -105,53 +105,53 @@ Partial Class frmBlocNotas
         ' 
         ' mnuPrincipal
         ' 
-        mnuPrincipal.Items.AddRange(New ToolStripItem() {mnuSalir, EdiciónToolStripMenuItem, FormatoToolStripMenuItem, VerToolStripMenuItem, mnuHerramientas, AyudaToolStripMenuItem})
+        mnuPrincipal.Items.AddRange(New ToolStripItem() {mnuArchivo, EdiciónToolStripMenuItem, FormatoToolStripMenuItem, VerToolStripMenuItem, mnuHerramientas, AyudaToolStripMenuItem})
         mnuPrincipal.Location = New Point(0, 0)
         mnuPrincipal.Name = "mnuPrincipal"
         mnuPrincipal.Size = New Size(800, 24)
         mnuPrincipal.TabIndex = 0
         mnuPrincipal.Text = "MenuStrip1"
         ' 
-        ' mnuSalir
+        ' mnuArchivo
         ' 
-        mnuSalir.DropDownItems.AddRange(New ToolStripItem() {mnuNuevo, mnuAbrir, mnuGuardarDocumento, mnuGuardarComo, SalirToolStripMenuItem})
-        mnuSalir.Name = "mnuSalir"
-        mnuSalir.ShortcutKeys = Keys.Alt Or Keys.F4
-        mnuSalir.Size = New Size(63, 20)
-        mnuSalir.Text = "Archivo "
+        mnuArchivo.DropDownItems.AddRange(New ToolStripItem() {mnuNuevo, mnuAbrir, mnuGuardarDocumento, mnuGuardarComo, SalirToolStripMenuItem})
+        mnuArchivo.Name = "mnuArchivo"
+        mnuArchivo.ShortcutKeys = Keys.Alt Or Keys.F4
+        mnuArchivo.Size = New Size(63, 20)
+        mnuArchivo.Text = "Archivo "
         ' 
         ' mnuNuevo
         ' 
         mnuNuevo.Name = "mnuNuevo"
         mnuNuevo.ShortcutKeys = Keys.Control Or Keys.N
-        mnuNuevo.Size = New Size(156, 22)
+        mnuNuevo.Size = New Size(180, 22)
         mnuNuevo.Text = "Nuevo"
         ' 
         ' mnuAbrir
         ' 
         mnuAbrir.Name = "mnuAbrir"
         mnuAbrir.ShortcutKeys = Keys.Control Or Keys.O
-        mnuAbrir.Size = New Size(156, 22)
+        mnuAbrir.Size = New Size(180, 22)
         mnuAbrir.Text = "Abrir"
         ' 
         ' mnuGuardarDocumento
         ' 
         mnuGuardarDocumento.Name = "mnuGuardarDocumento"
         mnuGuardarDocumento.ShortcutKeys = Keys.Control Or Keys.S
-        mnuGuardarDocumento.Size = New Size(156, 22)
+        mnuGuardarDocumento.Size = New Size(180, 22)
         mnuGuardarDocumento.Text = "Guardar"
         ' 
         ' mnuGuardarComo
         ' 
         mnuGuardarComo.Name = "mnuGuardarComo"
-        mnuGuardarComo.Size = New Size(156, 22)
+        mnuGuardarComo.Size = New Size(180, 22)
         mnuGuardarComo.Text = "Guardar como"
         ' 
         ' SalirToolStripMenuItem
         ' 
         SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         SalirToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
-        SalirToolStripMenuItem.Size = New Size(156, 22)
+        SalirToolStripMenuItem.Size = New Size(180, 22)
         SalirToolStripMenuItem.Text = "Salir"
         ' 
         ' EdiciónToolStripMenuItem
@@ -634,7 +634,7 @@ Partial Class frmBlocNotas
     End Sub
 
     Friend WithEvents mnuPrincipal As MenuStrip
-    Friend WithEvents mnuSalir As ToolStripMenuItem
+    Friend WithEvents mnuArchivo As ToolStripMenuItem
     Friend WithEvents EdiciónToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FormatoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerToolStripMenuItem As ToolStripMenuItem
