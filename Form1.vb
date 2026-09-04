@@ -44,8 +44,37 @@ Public Class frmBlocNotas
     Private Sub mnuGuardarComo_Click(sender As Object, e As EventArgs) Handles mnuGuardarComo.Click
     End Sub
 
-    Private Sub mnuSalir_Click(sender As Object, e As EventArgs) Handles mnuSalir.Click
+    Private Sub mnuSalir_Click(
+    sender As Object,
+    e As EventArgs
+) Handles mnuSalir.Click
+
+        If documentoModificado Then
+
+            Dim respuesta As DialogResult =
+            MessageBox.Show(
+                "El documento ha sido modificado. ¿Desea guardar los cambios?",
+                "Bloc de Notas",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Warning
+            )
+
+            If respuesta = DialogResult.Yes Then
+
+                If documentoModificado Then
+                    Exit Sub
+                End If
+
+            ElseIf respuesta = DialogResult.Cancel Then
+
+                Exit Sub
+
+            End If
+
+        End If
+
         Me.Close()
+
     End Sub
 
     ' 3. MENÚ EDICIÓN Y FORMATO
@@ -209,14 +238,50 @@ Public Class frmBlocNotas
     End Sub
 
     Private Sub ActualizarBarraEstado()
-        Dim linea As Integer = rtbDocumento.GetLineFromCharIndex(rtbDocumento.SelectionStart) + 1
-        Dim inicioLinea As Integer = rtbDocumento.GetFirstCharIndexOfCurrentLine()
-        Dim columna As Integer = rtbDocumento.SelectionStart - inicioLinea + 1
 
-        stsPosicion.Text = $"Línea: {linea} Columna: {columna}"
-        stsCaracteres.Text = $"Caracteres: {rtbDocumento.TextLength}"
-        stsZoom.Text = $"Zoom: {CInt(rtbDocumento.ZoomFactor * 100)}%"
-        stsEstado.Text = If(documentoModificado, "Modificado", "Listo")
+        Dim linea As Integer =
+        rtbDocumento.GetLineFromCharIndex(
+            rtbDocumento.SelectionStart
+        ) + 1
+
+        Dim inicioLinea As Integer =
+        rtbDocumento.GetFirstCharIndexOfCurrentLine()
+
+        Dim columna As Integer =
+        rtbDocumento.SelectionStart -
+        inicioLinea + 1
+
+        Dim texto As String =
+        rtbDocumento.Text.Trim()
+
+        Dim cantidadPalabras As Integer = 0
+
+        If Not String.IsNullOrWhiteSpace(texto) Then
+
+            Dim palabras() As String =
+            texto.Split(
+                New Char() {" "c, ChrW(10), ChrW(13), ChrW(9)},
+                StringSplitOptions.RemoveEmptyEntries
+            )
+
+            cantidadPalabras = palabras.Length
+
+        End If
+
+        stsPosicion.Text =
+        $"Línea: {linea}   Columna: {columna}"
+
+        stsCaracteres.Text =
+        $"Caracteres: {rtbDocumento.TextLength}   Palabras: {cantidadPalabras}"
+
+        stsZoom.Text =
+        $"Zoom: {CInt(rtbDocumento.ZoomFactor * 100)}%"
+
+        stsEstado.Text =
+        If(documentoModificado,
+           "Modificado",
+           "Listo")
+
     End Sub
 
     ' 8. FUNCIONES INTERNAS (NUEVO, ABRIR, GUARDAR)
@@ -233,13 +298,63 @@ Public Class frmBlocNotas
     End Sub
 
     Private Sub AbrirDocumento()
-        If dlgAbrir.ShowDialog() = DialogResult.OK Then
-            rtbDocumento.LoadFile(dlgAbrir.FileName, RichTextBoxStreamType.PlainText)
-            rutaActual = dlgAbrir.FileName
-            documentoModificado = False
-            Me.Text = $"Bloc de Notas VB.NET - [{Path.GetFileName(rutaActual)}]"
-            ActualizarBarraEstado()
+
+        If documentoModificado Then
+
+            Dim respuesta As DialogResult =
+            MessageBox.Show(
+                "El documento ha sido modificado. ¿Desea guardar los cambios?",
+                "Bloc de Notas",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Warning
+            )
+
+            If respuesta = DialogResult.Cancel Then
+                Exit Sub
+            End If
+
+            If respuesta = DialogResult.Yes Then
+
+
+                If documentoModificado Then
+                    Exit Sub
+                End If
+
+            End If
+
         End If
+
+        If dlgAbrir.ShowDialog() = DialogResult.OK Then
+
+            Try
+
+                rtbDocumento.LoadFile(
+                dlgAbrir.FileName,
+                RichTextBoxStreamType.PlainText
+            )
+
+                rutaActual = dlgAbrir.FileName
+                documentoModificado = False
+
+                Me.Text =
+                $"Bloc de Notas VB.NET - [{Path.GetFileName(rutaActual)}]"
+
+                ActualizarBarraEstado()
+
+            Catch ex As Exception
+
+                MessageBox.Show(
+                "No se pudo abrir el archivo." & vbCrLf &
+                ex.Message,
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            )
+
+            End Try
+
+        End If
+
     End Sub
 
     Private Sub dlgGuardar_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles dlgGuardar.FileOk
@@ -254,9 +369,115 @@ Public Class frmBlocNotas
 
     End Sub
 
-    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+    Private Sub mnuBuscar_Click(
+    sender As Object,
+    e As EventArgs
+) Handles mnuBuscar.Click
+
+        txtBuscar.Focus()
 
     End Sub
+    Private Sub btnBuscar_Click(
+    sender As Object,
+    e As EventArgs
+) Handles btnBuscar.Click
+
+        If String.IsNullOrWhiteSpace(txtBuscar.Text) Then
+
+            MessageBox.Show(
+                "Escriba una palabra o frase para buscar.",
+                "Buscar",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+
+            Exit Sub
+
+        End If
+
+        Dim texto As String = rtbDocumento.Text
+        Dim palabra As String = txtBuscar.Text
+
+        Dim posicion As Integer =
+            texto.IndexOf(
+                palabra,
+                StringComparison.CurrentCultureIgnoreCase
+            )
+
+        If posicion >= 0 Then
+
+            rtbDocumento.Select(
+                posicion,
+                palabra.Length
+            )
+
+            rtbDocumento.Focus()
+
+        Else
+
+            MessageBox.Show(
+                "No se encontró el texto buscado.",
+                "Buscar",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+
+        End If
+
+    End Sub
+    Private Sub mnuContarCaracteres_Click(
+    sender As Object,
+    e As EventArgs
+) Handles mnuContarCaracteres.Click
+
+        Dim cantidad As Integer =
+            rtbDocumento.TextLength
+
+        MessageBox.Show(
+            "Cantidad de caracteres: " & cantidad,
+            "Contar caracteres",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information
+        )
+
+    End Sub
+    Private Sub mnuContarPalabras_Click(
+    sender As Object,
+    e As EventArgs
+) Handles mnuContarPalabras.Click
+
+        Dim texto As String =
+            rtbDocumento.Text.Trim()
+
+        If String.IsNullOrWhiteSpace(texto) Then
+
+            MessageBox.Show(
+                "Cantidad de palabras: 0",
+                "Contar palabras",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+
+            Exit Sub
+
+        End If
+
+        Dim palabras() As String =
+            texto.Split(
+                New Char() {" "c, ChrW(10), ChrW(13), ChrW(9)},
+                StringSplitOptions.RemoveEmptyEntries
+            )
+
+        MessageBox.Show(
+            "Cantidad de palabras: " & palabras.Length,
+            "Contar palabras",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information
+        )
+
+    End Sub
+
+
 End Class
 
 
