@@ -594,11 +594,11 @@ Partial Class frmBlocNotas
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(263, 234)
+        Label1.Location = New Point(31, 405)
         Label1.Name = "Label1"
-        Label1.Size = New Size(41, 15)
+        Label1.Size = New Size(71, 15)
         Label1.TabIndex = 9
-        Label1.Text = "Label1"
+        Label1.Text = "Buscar texto"
         ' 
         ' frmBlocNotas
         ' 
