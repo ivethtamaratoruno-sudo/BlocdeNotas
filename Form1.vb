@@ -1,16 +1,25 @@
 ﻿Imports System.IO
 Imports System.Drawing
+
 Public Class frmBlocNotas
+
     Private rutaActual As String = String.Empty
     Private documentoModificado As Boolean = False
 
-    ' 1. CARGA DEL FORMULARIO Y CONFIGURACIÓN INICIAL
+
+
+    Private Sub rtbDocumento_TextChanged(sender As Object, e As EventArgs)
+        documentoModificado = True
+        ActualizarBarraEstado()
+    End Sub
+
     Private Sub frmBlocNotas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Configuración inicial del RichTextBox
         rtbDocumento.Font = New Font("Consolas", 11)
         rtbDocumento.WordWrap = True
-        mnuAjusteLinea.Checked = True
+        mnuAjusteDeLinea.Checked = True
 
-        ' Llenar listas desplegables (Combos)
+        ' Llenar combos del ToolStrip
         tscbFuente.Items.AddRange(New String() {"Segoe UI", "Consolas", "Arial", "Times New Roman"})
         tscbFuente.SelectedIndex = 1
         tscbTamano.Items.AddRange(New String() {"8", "10", "11", "12", "14", "18", "24"})
@@ -18,18 +27,18 @@ Public Class frmBlocNotas
 
         ActualizarBarraEstado()
         Me.Text = "Bloc de Notas VB.NET - [Nuevo documento]"
+        ' Maximizar la ventana al iniciar
+        Me.WindowState = FormWindowState.Maximized
     End Sub
 
-    Private Sub rtbDocumento_TextChanged(sender As Object, e As EventArgs) Handles rtbDocumento.TextChanged
-        documentoModificado = True
+    Private Sub mnuPrincipal_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles mnuPrincipal.ItemClicked
+
+    End Sub
+
+    Private Sub rtbDocumento_SelectionChanged_1(sender As Object, e As EventArgs) Handles rtbDocumento.SelectionChanged
         ActualizarBarraEstado()
     End Sub
 
-    Private Sub rtbDocumento_SelectionChanged(sender As Object, e As EventArgs) Handles rtbDocumento.SelectionChanged
-        ActualizarBarraEstado()
-    End Sub
-
-    ' 2. MENÚ ARCHIVO (MENUSTRIP)
     Private Sub mnuNuevo_Click(sender As Object, e As EventArgs) Handles mnuNuevo.Click
         NuevoDocumento()
     End Sub
@@ -38,18 +47,20 @@ Public Class frmBlocNotas
         AbrirDocumento()
     End Sub
 
-    Private Sub mnuGuardar_Click(sender As Object, e As EventArgs) Handles mnuGuardarDocumento.Click
+    Private Sub mnuGuardar_Click(sender As Object, e As EventArgs) Handles mnuGuardar.Click
+        GuardarDocumento(False)
     End Sub
 
     Private Sub mnuGuardarComo_Click(sender As Object, e As EventArgs) Handles mnuGuardarComo.Click
+        GuardarDocumento(True)
     End Sub
 
-    Private Sub mnuArchivo_Click(
+    Private Sub mnuSalir_Click(
     sender As Object,
     e As EventArgs
-) Handles mnuArchivo.Click
+) Handles mnuSalir.Click
 
-        If documentoModificado Then
+        If rtbDocumento.Modified Then
 
             Dim respuesta As DialogResult =
             MessageBox.Show(
@@ -61,7 +72,9 @@ Public Class frmBlocNotas
 
             If respuesta = DialogResult.Yes Then
 
-                If documentoModificado Then
+                GuardarDocumento(False)
+
+                If rtbDocumento.Modified Then
                     Exit Sub
                 End If
 
@@ -77,7 +90,6 @@ Public Class frmBlocNotas
 
     End Sub
 
-    ' 3. MENÚ EDICIÓN Y FORMATO
     Private Sub mnuDeshacer_Click(sender As Object, e As EventArgs) Handles mnuDeshacer.Click
         If rtbDocumento.CanUndo Then rtbDocumento.Undo()
     End Sub
@@ -115,23 +127,18 @@ Public Class frmBlocNotas
         End If
     End Sub
 
-    Private Sub mnuAjusteLinea_Click(sender As Object, e As EventArgs) Handles mnuAjusteLinea.Click
-        rtbDocumento.WordWrap = mnuAjusteLinea.Checked
+    Private Sub mnuAjusteDeLinea_Click(sender As Object, e As EventArgs) Handles mnuAjusteDeLinea.Click
+        rtbDocumento.WordWrap = mnuAjusteDeLinea.Checked
     End Sub
 
-    ' 4. MENÚ VER Y AYUDA
     Private Sub mnuZoomMas_Click(sender As Object, e As EventArgs) Handles mnuZoomMas.Click
-        If rtbDocumento.ZoomFactor < 4.0F Then
-            rtbDocumento.ZoomFactor += 0.1F
-            ActualizarBarraEstado()
-        End If
+        If rtbDocumento.ZoomFactor < 4.0F Then rtbDocumento.ZoomFactor += 0.1F
+        ActualizarBarraEstado()
     End Sub
 
     Private Sub mnuZoomMenos_Click(sender As Object, e As EventArgs) Handles mnuZoomMenos.Click
-        If rtbDocumento.ZoomFactor > 0.3F Then
-            rtbDocumento.ZoomFactor -= 0.1F
-            ActualizarBarraEstado()
-        End If
+        If rtbDocumento.ZoomFactor > 0.3F Then rtbDocumento.ZoomFactor -= 0.1F
+        ActualizarBarraEstado()
     End Sub
 
     Private Sub mnuZoomRestablecer_Click(sender As Object, e As EventArgs) Handles mnuZoomRestablecer.Click
@@ -140,10 +147,10 @@ Public Class frmBlocNotas
     End Sub
 
     Private Sub mnuAcercaDe_Click(sender As Object, e As EventArgs) Handles mnuAcercaDe.Click
-        MessageBox.Show("Bloc de Notas VB.NET" & vbCrLf & "Ejemplo académico - MenuStrip/ToolStrip/StatusStrip", "Acerca de", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Bloc de Notas VB.NET" & vbCrLf & "Ejemplo académico - MenuStrip/ToolStrip/StatusStrip",
+                         "Acerca de", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    ' 5. BOTONES DE ACCESO RÁPIDO (TOOLSTRIP)
     Private Sub tsbNuevo_Click(sender As Object, e As EventArgs) Handles tsbNuevo.Click
         NuevoDocumento()
     End Sub
@@ -152,7 +159,9 @@ Public Class frmBlocNotas
         AbrirDocumento()
     End Sub
 
-    
+    Private Sub tsbGuardar_Click(sender As Object, e As EventArgs) Handles tsbGuardar.Click
+        GuardarDocumento(False)
+    End Sub
 
     Private Sub tsbCortar_Click(sender As Object, e As EventArgs) Handles tsbCortar.Click
         rtbDocumento.Cut()
@@ -178,12 +187,12 @@ Public Class frmBlocNotas
         AplicarEstiloFuente(FontStyle.Underline)
     End Sub
 
-    Private Sub tscbFuente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tscbFuente.SelectedIndexChanged
+    Private Sub tscbFuente_Click(sender As Object, e As EventArgs) Handles tscbFuente.Click
         Dim tamano As Single = rtbDocumento.SelectionFont.Size
         rtbDocumento.SelectionFont = New Font(tscbFuente.Text, tamano, rtbDocumento.SelectionFont.Style)
     End Sub
 
-    Private Sub tscbTamano_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tscbTamano.SelectedIndexChanged
+    Private Sub tscbTamano_Click(sender As Object, e As EventArgs) Handles tscbTamano.Click
         Dim tam As Single = Convert.ToSingle(tscbTamano.Text)
         rtbDocumento.SelectionFont = New Font(rtbDocumento.SelectionFont.FontFamily, tam, rtbDocumento.SelectionFont.Style)
     End Sub
@@ -200,7 +209,6 @@ Public Class frmBlocNotas
         rtbDocumento.SelectionFont = New Font(fuenteActual, nuevoEstilo)
     End Sub
 
-    ' 6. MENÚ CONTEXTUAL / CLIC DERECHO (CONTEXTMENUSTRIP)
     Private Sub cmsTexto_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cmsTexto.Opening
         Dim haySeleccion As Boolean = rtbDocumento.SelectionLength > 0
         cmsCortar.Enabled = haySeleccion
@@ -231,11 +239,9 @@ Public Class frmBlocNotas
         End If
     End Sub
 
-    ' 7. RELOJ Y ACTUALIZACIÓN DE ESTADO (STATUSSTRIP)
     Private Sub tmrReloj_Tick(sender As Object, e As EventArgs) Handles tmrReloj.Tick
-        stsFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")
+        stsFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss")
     End Sub
-
     Private Sub ActualizarBarraEstado()
 
         Dim linea As Integer =
@@ -283,11 +289,12 @@ Public Class frmBlocNotas
 
     End Sub
 
-    ' 8. FUNCIONES INTERNAS (NUEVO, ABRIR, GUARDAR)
     Private Sub NuevoDocumento()
         If documentoModificado Then
-            Dim r = MessageBox.Show("¿Desea guardar los cambios antes de continuar?", "Bloc de Notas", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+            Dim r = MessageBox.Show("¿Desea guardar los cambios antes de continuar?",
+                                     "Bloc de Notas", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
             If r = DialogResult.Cancel Then Exit Sub
+            If r = DialogResult.Yes Then GuardarDocumento(False)
         End If
         rtbDocumento.Clear()
         rutaActual = String.Empty
@@ -301,12 +308,12 @@ Public Class frmBlocNotas
         If documentoModificado Then
 
             Dim respuesta As DialogResult =
-            MessageBox.Show(
-                "El documento ha sido modificado. ¿Desea guardar los cambios?",
-                "Bloc de Notas",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Warning
-            )
+                MessageBox.Show(
+                    "El documento ha sido modificado. ¿Desea guardar los cambios?",
+                    "Bloc de Notas",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning
+                )
 
             If respuesta = DialogResult.Cancel Then
                 Exit Sub
@@ -314,6 +321,7 @@ Public Class frmBlocNotas
 
             If respuesta = DialogResult.Yes Then
 
+                GuardarDocumento(False)
 
                 If documentoModificado Then
                     Exit Sub
@@ -328,46 +336,94 @@ Public Class frmBlocNotas
             Try
 
                 rtbDocumento.LoadFile(
-                dlgAbrir.FileName,
-                RichTextBoxStreamType.PlainText
-            )
+                    dlgAbrir.FileName,
+                    RichTextBoxStreamType.PlainText
+                )
 
                 rutaActual = dlgAbrir.FileName
                 documentoModificado = False
 
                 Me.Text =
-                $"Bloc de Notas VB.NET - [{Path.GetFileName(rutaActual)}]"
+                    $"Bloc de Notas VB.NET - [{Path.GetFileName(rutaActual)}]"
 
                 ActualizarBarraEstado()
 
             Catch ex As Exception
 
                 MessageBox.Show(
-                "No se pudo abrir el archivo." & vbCrLf &
-                ex.Message,
-                "Error",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-            )
+                    "No se pudo abrir el archivo." & vbCrLf &
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                )
 
             End Try
 
         End If
+    End Sub
+
+    Private Sub GuardarDocumento(
+    forzarDialogo As Boolean
+)
+
+        Try
+
+            If String.IsNullOrEmpty(rutaActual) OrElse
+           forzarDialogo Then
+
+                If dlgGuardar.ShowDialog() = DialogResult.OK Then
+
+                    rutaActual = dlgGuardar.FileName
+
+                Else
+
+                    Exit Sub
+
+                End If
+
+            End If
+
+            rtbDocumento.SaveFile(
+            rutaActual,
+            RichTextBoxStreamType.PlainText
+        )
+
+            documentoModificado = False
+
+            Me.Text =
+            $"Bloc de Notas VB.NET - [{Path.GetFileName(rutaActual)}]"
+
+            stsEstado.Text =
+            "Guardado correctamente"
+
+            ActualizarBarraEstado()
+
+        Catch ex As Exception
+
+            MessageBox.Show(
+            "No se pudo guardar el archivo." & vbCrLf &
+            ex.Message,
+            "Error al guardar",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error
+        )
+
+        End Try
 
     End Sub
 
-    Private Sub dlgGuardar_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles dlgGuardar.FileOk
+    Private Sub mnuHerramientas_Click(sender As Object, e As EventArgs) Handles mnuHerramientas.Click
 
     End Sub
 
-    Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox1.TextChanged
+    Private Sub rtbDocumento_TextChanged_1(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
+    Private Sub CToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuContarCaracteres.Click
 
     End Sub
-
     Private Sub mnuBuscar_Click(
     sender As Object,
     e As EventArgs
@@ -376,10 +432,9 @@ Public Class frmBlocNotas
         txtBuscar.Focus()
 
     End Sub
-    Private Sub btnBuscar_Click(
-    sender As Object,
-    e As EventArgs
-) Handles btnBuscar.Click
+
+    'boton buscar con funcion click
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs)
 
         If String.IsNullOrWhiteSpace(txtBuscar.Text) Then
 
@@ -394,10 +449,10 @@ Public Class frmBlocNotas
 
         End If
 
-        Dim texto As String = rtbDocumento.Text
-        Dim palabra As String = txtBuscar.Text
+        Dim texto = rtbDocumento.Text
+        Dim palabra = txtBuscar.Text
 
-        Dim posicion As Integer =
+        Dim posicion =
             texto.IndexOf(
                 palabra,
                 StringComparison.CurrentCultureIgnoreCase
@@ -475,8 +530,6 @@ Public Class frmBlocNotas
         )
 
     End Sub
-
-
 End Class
 
 

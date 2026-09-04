@@ -28,7 +28,7 @@ Partial Class frmBlocNotas
         mnuArchivo = New ToolStripMenuItem()
         mnuNuevo = New ToolStripMenuItem()
         mnuAbrir = New ToolStripMenuItem()
-        mnuGuardarDocumento = New ToolStripMenuItem()
+        mnuGuardar = New ToolStripMenuItem()
         mnuGuardarComo = New ToolStripMenuItem()
         mnuSalir = New ToolStripMenuItem()
         mnuEdicion = New ToolStripMenuItem()
@@ -41,7 +41,7 @@ Partial Class frmBlocNotas
         mnuFormato = New ToolStripMenuItem()
         mnuFuente = New ToolStripMenuItem()
         mnuColorTexto = New ToolStripMenuItem()
-        mnuAjusteLinea = New ToolStripMenuItem()
+        mnuAjusteDeLinea = New ToolStripMenuItem()
         mnuVer = New ToolStripMenuItem()
         mnuZoomMas = New ToolStripMenuItem()
         mnuZoomMenos = New ToolStripMenuItem()
@@ -59,7 +59,7 @@ Partial Class frmBlocNotas
         ToolStripSeparator1 = New ToolStripSeparator()
         tsbAbrir = New ToolStripButton()
         ToolStripSeparator2 = New ToolStripSeparator()
-        tsbGuardarDocumento = New ToolStripButton()
+        tsbGuardar = New ToolStripButton()
         ToolStripSeparator3 = New ToolStripSeparator()
         tsbCortar = New ToolStripButton()
         ToolStripSeparator4 = New ToolStripSeparator()
@@ -114,7 +114,7 @@ Partial Class frmBlocNotas
         ' 
         ' mnuArchivo
         ' 
-        mnuArchivo.DropDownItems.AddRange(New ToolStripItem() {mnuNuevo, mnuAbrir, mnuGuardarDocumento, mnuGuardarComo, mnuSalir})
+        mnuArchivo.DropDownItems.AddRange(New ToolStripItem() {mnuNuevo, mnuAbrir, mnuGuardar, mnuGuardarComo, mnuSalir})
         mnuArchivo.Name = "mnuArchivo"
         mnuArchivo.ShortcutKeys = Keys.Alt Or Keys.F4
         mnuArchivo.Size = New Size(63, 20)
@@ -134,12 +134,12 @@ Partial Class frmBlocNotas
         mnuAbrir.Size = New Size(180, 22)
         mnuAbrir.Text = "Abrir"
         ' 
-        ' mnuGuardarDocumento
+        ' mnuGuardar
         ' 
-        mnuGuardarDocumento.Name = "mnuGuardarDocumento"
-        mnuGuardarDocumento.ShortcutKeys = Keys.Control Or Keys.S
-        mnuGuardarDocumento.Size = New Size(180, 22)
-        mnuGuardarDocumento.Text = "Guardar"
+        mnuGuardar.Name = "mnuGuardar"
+        mnuGuardar.ShortcutKeys = Keys.Control Or Keys.S
+        mnuGuardar.Size = New Size(180, 22)
+        mnuGuardar.Text = "Guardar"
         ' 
         ' mnuGuardarComo
         ' 
@@ -205,7 +205,7 @@ Partial Class frmBlocNotas
         ' 
         ' mnuFormato
         ' 
-        mnuFormato.DropDownItems.AddRange(New ToolStripItem() {mnuFuente, mnuColorTexto, mnuAjusteLinea})
+        mnuFormato.DropDownItems.AddRange(New ToolStripItem() {mnuFuente, mnuColorTexto, mnuAjusteDeLinea})
         mnuFormato.Name = "mnuFormato"
         mnuFormato.Size = New Size(64, 20)
         mnuFormato.Text = "Formato"
@@ -222,12 +222,12 @@ Partial Class frmBlocNotas
         mnuColorTexto.Size = New Size(180, 22)
         mnuColorTexto.Text = "Color de texto"
         ' 
-        ' mnuAjusteLinea
+        ' mnuAjusteDeLinea
         ' 
-        mnuAjusteLinea.CheckOnClick = True
-        mnuAjusteLinea.Name = "mnuAjusteLinea"
-        mnuAjusteLinea.Size = New Size(180, 22)
-        mnuAjusteLinea.Text = "Ajuste de línea"
+        mnuAjusteDeLinea.CheckOnClick = True
+        mnuAjusteDeLinea.Name = "mnuAjusteDeLinea"
+        mnuAjusteDeLinea.Size = New Size(180, 22)
+        mnuAjusteDeLinea.Text = "Ajuste de línea"
         ' 
         ' mnuVer
         ' 
@@ -239,19 +239,19 @@ Partial Class frmBlocNotas
         ' mnuZoomMas
         ' 
         mnuZoomMas.Name = "mnuZoomMas"
-        mnuZoomMas.Size = New Size(180, 22)
+        mnuZoomMas.Size = New Size(167, 22)
         mnuZoomMas.Text = "Zoom +"
         ' 
         ' mnuZoomMenos
         ' 
         mnuZoomMenos.Name = "mnuZoomMenos"
-        mnuZoomMenos.Size = New Size(180, 22)
+        mnuZoomMenos.Size = New Size(167, 22)
         mnuZoomMenos.Text = "Zoom -"
         ' 
         ' mnuZoomRestablecer
         ' 
         mnuZoomRestablecer.Name = "mnuZoomRestablecer"
-        mnuZoomRestablecer.Size = New Size(180, 22)
+        mnuZoomRestablecer.Size = New Size(167, 22)
         mnuZoomRestablecer.Text = "Restablecer zoom"
         ' 
         ' mnuHerramientas
@@ -290,25 +290,25 @@ Partial Class frmBlocNotas
         ' mnuAcercaDe
         ' 
         mnuAcercaDe.Name = "mnuAcercaDe"
-        mnuAcercaDe.Size = New Size(180, 22)
+        mnuAcercaDe.Size = New Size(165, 22)
         mnuAcercaDe.Text = "Acerca de"
         ' 
         ' AngelicaMorenoToolStripMenuItem
         ' 
         AngelicaMorenoToolStripMenuItem.Name = "AngelicaMorenoToolStripMenuItem"
-        AngelicaMorenoToolStripMenuItem.Size = New Size(180, 22)
+        AngelicaMorenoToolStripMenuItem.Size = New Size(165, 22)
         AngelicaMorenoToolStripMenuItem.Text = "Angelica Moreno"
         ' 
         ' IvethToruñoToolStripMenuItem
         ' 
         IvethToruñoToolStripMenuItem.Name = "IvethToruñoToolStripMenuItem"
-        IvethToruñoToolStripMenuItem.Size = New Size(180, 22)
+        IvethToruñoToolStripMenuItem.Size = New Size(165, 22)
         IvethToruñoToolStripMenuItem.Text = "Iveth Toruño"
         ' 
         ' tsPrincipal
         ' 
         tsPrincipal.GripStyle = ToolStripGripStyle.Hidden
-        tsPrincipal.Items.AddRange(New ToolStripItem() {tsbNuevo, ToolStripSeparator1, tsbAbrir, ToolStripSeparator2, tsbGuardarDocumento, ToolStripSeparator3, tsbCortar, ToolStripSeparator4, tsbCopiar, ToolStripSeparator5, tsbPegar, ToolStripSeparator6, tsbNegrita, ToolStripSeparator7, tsbCursiva, ToolStripSeparator8, tsbSubrayado, ToolStripSeparator9, tscbFuente, tscbTamano})
+        tsPrincipal.Items.AddRange(New ToolStripItem() {tsbNuevo, ToolStripSeparator1, tsbAbrir, ToolStripSeparator2, tsbGuardar, ToolStripSeparator3, tsbCortar, ToolStripSeparator4, tsbCopiar, ToolStripSeparator5, tsbPegar, ToolStripSeparator6, tsbNegrita, ToolStripSeparator7, tsbCursiva, ToolStripSeparator8, tsbSubrayado, ToolStripSeparator9, tscbFuente, tscbTamano})
         tsPrincipal.Location = New Point(0, 24)
         tsPrincipal.Name = "tsPrincipal"
         tsPrincipal.Size = New Size(800, 25)
@@ -343,14 +343,14 @@ Partial Class frmBlocNotas
         ToolStripSeparator2.Name = "ToolStripSeparator2"
         ToolStripSeparator2.Size = New Size(6, 25)
         ' 
-        ' tsbGuardarDocumento
+        ' tsbGuardar
         ' 
-        tsbGuardarDocumento.DisplayStyle = ToolStripItemDisplayStyle.Image
-        tsbGuardarDocumento.Image = CType(resources.GetObject("tsbGuardarDocumento.Image"), Image)
-        tsbGuardarDocumento.ImageTransparentColor = Color.Magenta
-        tsbGuardarDocumento.Name = "tsbGuardarDocumento"
-        tsbGuardarDocumento.Size = New Size(23, 22)
-        tsbGuardarDocumento.Text = "Guardar"
+        tsbGuardar.DisplayStyle = ToolStripItemDisplayStyle.Image
+        tsbGuardar.Image = CType(resources.GetObject("tsbGuardar.Image"), Image)
+        tsbGuardar.ImageTransparentColor = Color.Magenta
+        tsbGuardar.Name = "tsbGuardar"
+        tsbGuardar.Size = New Size(23, 22)
+        tsbGuardar.Text = "Guardar"
         ' 
         ' ToolStripSeparator3
         ' 
@@ -650,7 +650,7 @@ Partial Class frmBlocNotas
     Friend WithEvents dlgColor As ColorDialog
     Friend WithEvents tmrReloj As Timer
     Friend WithEvents mnuAbrir As ToolStripMenuItem
-    Friend WithEvents mnuGuardarDocumento As ToolStripMenuItem
+    Friend WithEvents mnuGuardar As ToolStripMenuItem
     Friend WithEvents mnuGuardarComo As ToolStripMenuItem
     Friend WithEvents mnuSalir As ToolStripMenuItem
     Friend WithEvents mnuDeshacer As ToolStripMenuItem
@@ -661,7 +661,7 @@ Partial Class frmBlocNotas
     Friend WithEvents mnuSeleccionarTodo As ToolStripMenuItem
     Friend WithEvents mnuFuente As ToolStripMenuItem
     Friend WithEvents mnuColorTexto As ToolStripMenuItem
-    Friend WithEvents mnuAjusteLinea As ToolStripMenuItem
+    Friend WithEvents mnuAjusteDeLinea As ToolStripMenuItem
     Friend WithEvents mnuZoomMas As ToolStripMenuItem
     Friend WithEvents mnuZoomMenos As ToolStripMenuItem
     Friend WithEvents mnuZoomRestablecer As ToolStripMenuItem
@@ -675,7 +675,7 @@ Partial Class frmBlocNotas
     Friend WithEvents tsbAbrir As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents tsbGuardarDocumento As ToolStripButton
+    Friend WithEvents tsbGuardar As ToolStripButton
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents tsbCortar As ToolStripButton
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
