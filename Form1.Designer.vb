@@ -96,6 +96,7 @@ Partial Class frmBlocNotas
         RichTextBox1 = New RichTextBox()
         txtBuscar = New TextBox()
         btnBuscar = New Button()
+        Label1 = New Label()
         mnuPrincipal.SuspendLayout()
         tsPrincipal.SuspendLayout()
         cmsTexto.SuspendLayout()
@@ -590,11 +591,21 @@ Partial Class frmBlocNotas
         btnBuscar.Text = "Buscar"
         btnBuscar.UseVisualStyleBackColor = True
         ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Location = New Point(263, 234)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(41, 15)
+        Label1.TabIndex = 9
+        Label1.Text = "Label1"
+        ' 
         ' frmBlocNotas
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(Label1)
         Controls.Add(btnBuscar)
         Controls.Add(txtBuscar)
         Controls.Add(RichTextBox1)
@@ -690,5 +701,6 @@ Partial Class frmBlocNotas
     Friend WithEvents RichTextBox1 As RichTextBox
     Friend WithEvents txtBuscar As TextBox
     Friend WithEvents btnBuscar As Button
+    Friend WithEvents Label1 As Label
 
 End Class
